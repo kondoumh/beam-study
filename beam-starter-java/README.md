@@ -22,6 +22,8 @@ java -jar build/pipeline.jar --inputText="🎉"
 
 ## Run on Flink
 
+submit `build/pipeline.jar`
+
 Entry class: `com.example.App`
 
-Program Arguments: `--runner=FlinkRunner --inputText="🎉" `
+Program Arguments: `--runner=FlinkRunner --inputText="🎉"`
