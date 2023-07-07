@@ -1,5 +1,9 @@
 # Apache Beam starter for Java
 
+Original repo
+
+[GitHub - apache/beam-starter-java: Apache Beam starter repo for Java](https://github.com/apache/beam-starter-java)
+
 ## Run on Direct runner
 
 ```shell
