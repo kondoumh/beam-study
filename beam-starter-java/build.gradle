@@ -23,7 +23,8 @@ repositories {
 
 
 application {
-    mainClass = 'com.example.App'
+    //mainClass = 'com.example.App'
+    mainClass = 'com.example.WordCount'
 }
 
 test {

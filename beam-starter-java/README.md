@@ -12,7 +12,7 @@ Original repo
 
 To build a self-contained jar file, we need to configure the [`jar`](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html) task in the [`build.gradle`](build.gradle) file.
 
-```sh
+```shell
 # Build a self-contained jar.
 gradle jar
 
@@ -27,3 +27,19 @@ submit `build/pipeline.jar`
 Entry class: `com.example.App`
 
 Program Arguments: `--runner=FlinkRunner --inputText="🎉"`
+
+## Switch main class
+
+Change the build.gradle settings as below
+
+```groovy
+application {
+    mainClass = 'com.example.WordCount'
+}
+```
+
+## WordCount
+
+```shell
+gradle run --args=--output="./out/result"
+```
