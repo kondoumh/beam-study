@@ -41,5 +41,12 @@ application {
 ## WordCount
 
 ```shell
-gradle run --args=--output="./out/result"
+./gradlew run --args=--output="./out/result"
+```
+
+## DebuggingWordCount
+
+```shell
+./gradlew run --args=--input="./README.md"
+./gradlew run --args=--output="./out/result-d"
 ```
