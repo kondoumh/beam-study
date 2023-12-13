@@ -23,8 +23,9 @@ repositories {
 
 
 application {
-    //mainClass = 'com.example.App'
-    mainClass = 'com.example.WordCount'
+    mainClass = 'com.example.App'
+    //mainClass = 'com.example.WordCount'
+    //mainClass = 'com.example.DebuggingWordCount'
 }
 
 test {
@@ -40,6 +41,7 @@ dependencies {
     implementation "org.apache.kafka:kafka-clients:2.8.1"
     implementation "org.apache.beam:beam-sdks-java-io-kafka:2.48.0"
     runtimeOnly "org.apache.beam:beam-runners-flink-1.16:2.48.0"
+    runtimeOnly "org.hamcrest:hamcrest:2.2"
 
     // Tests dependencies.
     testImplementation "junit:junit:4.13.2"
