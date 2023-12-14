@@ -10,8 +10,11 @@ import org.apache.beam.sdk.transforms.MapElements;
 import org.apache.beam.sdk.values.TypeDescriptors;
 
 public class JdbcIOSample {
+  public interface Options extends PipelineOptions {
+  }
+
   public static void main(String[] args) {
-    PipelineOptions options = PipelineOptionsFactory.create();
+    PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().as(Options.class);
     Pipeline pipeline = Pipeline.create(options);
 
     JdbcIO.DataSourceConfiguration configuration = JdbcIO.DataSourceConfiguration
@@ -19,7 +22,8 @@ public class JdbcIOSample {
       .withUsername("postgres")
       .withPassword("postgres");
 
-    pipeline.apply("Read from PostgreSQL", JdbcIO.<String>read()
+    pipeline
+      .apply("Read from PostgreSQL", JdbcIO.<String>read()
         .withDataSourceConfiguration(configuration)
         .withQuery("select * from bm.user")
         .withRowMapper(new JdbcIO.RowMapper<String>() {
@@ -28,8 +32,8 @@ public class JdbcIOSample {
             return String.join(" ", resultSet.getString("user_id"), resultSet.getString("user_name"));
           }
         }))
-        .apply("Print", MapElements.into(TypeDescriptors.strings())
-        .via(x -> {
+      .apply("Print Rows", 
+        MapElements.into(TypeDescriptors.strings()).via(x -> {
           System.out.println(x);
           return x;
         }));
