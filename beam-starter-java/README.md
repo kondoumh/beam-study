@@ -50,3 +50,31 @@ application {
 ./gradlew run --args=--input="./README.md"
 ./gradlew run --args=--output="./out/result-d"
 ```
+
+## JdbcIOSample
+
+```shell
+psql -U postgres
+
+postgres=# create database bmdb;
+
+psql -U postgres -d bmdb;
+bmdb=#
+```
+
+```sql
+DROP SCHEMA IF EXISTS bm CASCADE;
+CREATE SCHEMA IF NOT EXISTS bm;
+
+DROP TABLE IF EXISTS bm.user;
+CREATE TABLE bm.user(
+  user_id character(6) NOT NULL,
+  user_name character varying(20),
+  user_email character varying(30),
+  PRIMARY KEY(user_id)
+);
+
+INSERT INTO bm.user (user_id, user_name, user_email) VALUES ('U00001', 'Bob', 'bob@example.com');
+INSERT INTO bm.user (user_id, user_name, user_email) VALUES ('U00002', 'Alice', 'alice@example.com');
+INSERT INTO bm.user (user_id, user_name, user_email) VALUES ('U00003', 'Carol', 'carol@example.com');
+```
