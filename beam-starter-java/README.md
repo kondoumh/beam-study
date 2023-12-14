@@ -78,3 +78,14 @@ INSERT INTO bm.user (user_id, user_name, user_email) VALUES ('U00001', 'Bob', 'b
 INSERT INTO bm.user (user_id, user_name, user_email) VALUES ('U00002', 'Alice', 'alice@example.com');
 INSERT INTO bm.user (user_id, user_name, user_email) VALUES ('U00003', 'Carol', 'carol@example.com');
 ```
+
+Input 50,000 data items
+
+```sql
+INSERT INTO bm.user (user_id, user_name, user_email)
+SELECT 
+    'U' || LPAD(CAST(id AS TEXT), 5, '0'),
+    substr(md5(random()::text), 1, 10),
+    substr(md5(random()::text), 1, 10) || '@example.com'
+FROM generate_series(1, 50000) AS id;
+```
