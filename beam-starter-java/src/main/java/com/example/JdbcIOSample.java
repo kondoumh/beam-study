@@ -26,6 +26,7 @@ public class JdbcIOSample {
       .apply("Read from PostgreSQL", JdbcIO.<String>read()
         .withDataSourceConfiguration(configuration)
         .withQuery("select * from bm.user")
+        .withFetchSize(100)
         .withRowMapper(new JdbcIO.RowMapper<String>() {
           @Override
           public String mapRow(ResultSet resultSet) throws Exception {
