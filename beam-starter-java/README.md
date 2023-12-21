@@ -89,3 +89,19 @@ SELECT
     substr(md5(random()::text), 1, 10) || '@example.com'
 FROM generate_series(1, 50000) AS id;
 ```
+
+## KafkaIOSample
+
+```shell
+kafka-topics --create --bootstrap-server=localhost:9092 --replication-factor 1 --partitions 1 --topic beam-topic
+```
+
+```shell
+kcat -b localhost:9092 -t beam-topic -P
+foo
+bar
+baz
+foo
+bar
+^d
+```
