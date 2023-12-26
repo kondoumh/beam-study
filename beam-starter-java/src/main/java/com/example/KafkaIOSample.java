@@ -14,11 +14,8 @@ import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.transforms.SimpleFunction;
 import org.apache.beam.sdk.transforms.Values;
 import org.apache.beam.sdk.values.KV;
-import org.apache.beam.sdk.values.TypeDescriptors;
 import org.apache.kafka.common.serialization.LongDeserializer;
-import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 
 public class KafkaIOSample {
   static final String TOKENIZER_PATTERN = "[^\\p{L}]+";
