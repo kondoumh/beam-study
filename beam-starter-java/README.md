@@ -92,10 +92,21 @@ FROM generate_series(1, 50000) AS id;
 
 ## KafkaIOSample
 
+Create topics
+
 ```shell
 kafka-topics --create --bootstrap-server=localhost:9092 --replication-factor 1 --partitions 1 --topic beam-topic
+kafka-topics --create --bootstrap-server=localhost:9092 --replication-factor 1 --partitions 1 --topic beam-topic-out
 ```
 
+Run on flink
+
+```shell
+./bin/flink run --detached -Dexecution.checkpointing.interval='3s' -Dstate.checkpoint-storage='filesystem' -Dstate.checkpoints.dir='file:///Users/kondoh/dev/flink-1.16.2/checkpoints/' ../beam-study/beam-starter-java/build/pipeline.jar --runner=FlinkRunner
+```
+
+
+Send message
 ```shell
 kcat -b localhost:9092 -t beam-topic -P
 foo
@@ -104,4 +115,10 @@ baz
 foo
 bar
 ^d
+```
+
+Receive message
+
+```shell
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic beam-topic-out --from-beginning
 ```
